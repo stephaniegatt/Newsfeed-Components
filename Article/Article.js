@@ -98,6 +98,8 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+  
+
 
   Hint: You will need to use createElement more than once here!
 
@@ -110,4 +112,77 @@ const data = [
   Step 4: Outside your function, loop over the data. At each iteration you'll use your component to create an article and append it to the DOM inside the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+
+  <div class="article">
+    <h2>{title of the article}</h2>
+    <p class="date">{date of the article}</p>
+
+    {three separate paragraph elements}
+
+    <span class='expandButton'></span>
+  </div>
 */
+// const article = document.querySelector('.article')
+
+function articleMaker(data) {
+  const article = document.createElement("div")
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const articleParagraph1 = document.createElement('p')
+  const articleParagraph2 = document.createElement('p')
+  const articleParagraph3 = document.createElement('p')
+  const articleButton = document.createElement('button') 
+  
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(articleParagraph1)
+  article.appendChild(articleParagraph2)
+  article.appendChild(articleParagraph3)
+  article.appendChild(articleButton)
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  articleButton.classList.add('expandButton')
+
+  articleTitle.textContent = data.title
+  articleDate.textContent = data.date
+  articleParagraph1.textContent = data.firstParagraph
+  articleParagraph2.textContent = data.secondParagraph
+  articleParagraph3.textContent = data.thirdParagraph
+
+  articleButton.addEventListener('click', () => {
+    articleButton.classList.toggle('article-open')
+  })
+  return article
+}
+
+data.push({
+  title: 'Lambda School Students: "Gettin it done"',
+  date: 'Nov 5th, 2018',
+  firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
+      moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
+      watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
+      Hutt calamari darth jabba.Darth dooku amidala organa moff.Boba darth binks solo hutt skywalker dantooine skywalker.Qui - gonn
+      jar twi'lek jinn leia jango skywalker mon.`,
+
+  secondParagraph: `Grievous fett calamari anakin skywalker hutt.Alderaan darth kenobi darth r2- d2
+      windu mothma.Sidious darth calamari moff.Wampa mothma sith wedge solo mara.Darth gonk maul sith moff chewbacca palpatine
+      mace amidala.C - 3po solo skywalker anakin yoda leia.Maul wampa bespin watto jade ewok darth jabba.Lando dantooine moff
+      k - 3po dantooine luke.Fisto mandalore darth wedge c - 3p0 ahsoka.Secura moff palpatine fett.Anakin sith darth darth.Moff
+      solo leia ben ponda jade.Binks jango aayla skywalker skywalker cade.Mustafar darth ventress anakin watto.Yavin jawa sebulba
+      owen jinn tatooine sith organa.`,
+
+  thirdParagraph: `Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidious
+      naboo ackbar tatooine. Hutt lars padmé darth. Maul solo darth darth jabba qui-gon chewbacca darth maul. Moff baba wicket
+      han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi'lek padmé wookiee. Leia
+      moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
+})
+
+data.forEach((articleData) => {
+  document.querySelector(".articles").appendChild(articleMaker(articleData))
+})
+
+
+
+ 
+// 
